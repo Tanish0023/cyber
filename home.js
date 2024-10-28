@@ -73,43 +73,46 @@ document.addEventListener("DOMContentLoaded", function () {
   observer.observe(testimonialSection);
 });
 const targets = [
-    { element: document.getElementById("researchPaper"), count: 46, suffix: "+" },
-    {
-      element: document.getElementById("patents"),
-      count: 80,
-      suffix: "+",
-    },
-    {
-      element: document.getElementById("projects"),
-      count: 10,
-      suffix: "+",
-    },
-  ];
-  
-  // Find the maximum count among all targets
-  const maxCount = Math.max(...targets.map((target) => target.count));
-  
-  // Function to animate count-up effect
-  function animateCountUp(target, duration) {
-    let currentCount = 0;
-    const increment = Math.ceil(target.count / (duration / 10));
-  
-    const interval = setInterval(() => {
-      currentCount += increment;
-      if (currentCount >= target.count) {
-        clearInterval(interval);
-        currentCount = target.count;
-        target.element.textContent = currentCount + target.suffix;
-      } else {
-        target.element.textContent = currentCount;
-      }
-    }, 10);
-  }
-  
-  // Increase the duration for a slower count effect
-  const durationMultiplier = 300; // Adjust this multiplier to control speed
-  targets.forEach((target) => {
-    const targetDuration = (maxCount / 100) * durationMultiplier; // Set a slower duration based on max count
-    animateCountUp(target, targetDuration);
-  });
-  
+  { element: document.getElementById("researchPaper"), count: 46, suffix: "+" },
+  {
+    element: document.getElementById("patents"),
+    count: 80,
+    suffix: "+",
+  },
+  {
+    element: document.getElementById("projects"),
+    count: 10,
+    suffix: "+",
+  },
+];
+
+// Find the maximum count among all targets
+const maxCount = Math.max(...targets.map((target) => target.count));
+
+// Function to animate count-up effect
+function animateCountUp(target, duration) {
+  let currentCount = 0;
+  const increment = Math.ceil(target.count / (duration / 10));
+
+  const interval = setInterval(() => {
+    currentCount += increment;
+    if (currentCount >= target.count) {
+      clearInterval(interval);
+      currentCount = target.count;
+      target.element.textContent = currentCount + target.suffix;
+    } else {
+      target.element.textContent = currentCount;
+    }
+  }, 10);
+}
+
+// Increase the duration for a slower count effect
+const durationMultiplier = 300; // Adjust this multiplier to control speed
+targets.forEach((target) => {
+  const targetDuration = (maxCount / 100) * durationMultiplier; // Set a slower duration based on max count
+  animateCountUp(target, targetDuration);
+});
+
+document.getElementById("menu-toggle").addEventListener("click", function () {
+  document.getElementById("menu").classList.toggle("hidden");
+});
